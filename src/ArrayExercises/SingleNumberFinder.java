@@ -1,15 +1,13 @@
 package ArrayExercises;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 public class SingleNumberFinder {
   public static int singleNumber(int[] nums) {
     HashMap<Integer, Integer> appearances = new HashMap<>();
     for (int i : nums) {
-      appearances.computeIfAbsent(i, x->0);
+      appearances.putIfAbsent(i, 0);
       appearances.computeIfPresent(i, (x,y) -> appearances.get(i) + 1);
     }
     for (Map.Entry<Integer, Integer> entry :
